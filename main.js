@@ -93,25 +93,50 @@ $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2);
 
 // event listener for when an item is checked
 
+var completedArticles = 0;
+var totalArticles = 2;
+
 $( ".articles li:nth-child(1) input" ).change(function() {
     if(this.checked) {
       myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': true });
+      completedArticles ++;
+      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100));
     }
     else {
       myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': false });
+      completedArticles --;
+      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100));
     }
 });
+
+
 
 $( ".articles li:nth-child(2) input" ).change(function() {
     if(this.checked) {
       myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': true });
+      completedArticles ++;
+      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100));
     }
     else {
       myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': false });
+      completedArticles --;
+      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100));
     }
 });
 
-console.log(myData.javascript.videos.video1);
+//console.log(myData.javascript.articles.completed);
 
 
 
