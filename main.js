@@ -3,25 +3,32 @@
 var myFirebaseRef = new Firebase("https://training-tracker.firebaseio.com/");
 
 myFirebaseRef.set({
-  title: "Hello World!",
-  author: "Firebase",
-  location: {
-    city: "San Francisco",
-    state: "California",
-    zip: 94103
-  }
-});
-
-myFirebaseRef.set({
   javascript: {
     books: {
-      book1: "Eloquent JavaScript by Marijn Haverbeke",
-      book2: "JavaScript & jQuery by Jon Duckett",
-      book3: "JavaScript The Good Parts by Douglas Crockford"
+      book1: {
+        title: "Eloquent JavaScript by Marijn Haverbeke",
+        completed: false
+      },
+      book2: {
+        title: "JavaScript & jQuery by Jon Duckett",
+        complete: false
+      },
+      book3: {
+        title: "JavaScript The Good Parts by Douglas Crockford",
+        complete: false
+      },
+      completed: 0
     },
     articles: {
-      article1: "Understand JavaScript’s 'this' With Clarity, and Master It",
-      article2: "Exploring JavaScript for-in loops"
+      article1: {
+        title: "Understand JavaScript’s 'this' With Clarity, and Master It",
+        completed: false
+      },
+      article2: {
+        title: "Exploring JavaScript for-in loops",
+        completed: false
+      },
+      completed: 0
     },
     videos: {
       video1: "How This Works in JavaScript",
@@ -55,6 +62,7 @@ myFirebaseRef.set({
   }
 });
 
+
 myFirebaseRef.child("/user1/name").on("value", function(snapshot) {
   alert(snapshot.val());  // Alerts "San Francisco"
   userName = snapshot.val();
@@ -67,8 +75,8 @@ myFirebaseRef.on("value", function(data) {
 
 $( ".user-name" ).append(userName);
 
-$( ".articles li:nth-child(1)" ).append(myData.javascript.articles.article1);
-$( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2);
+$( ".articles li:nth-child(1)" ).append(myData.javascript.articles.article1.title);
+$( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2.title);
 
 $( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1);
 $( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2);
@@ -76,9 +84,9 @@ $( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2);
 $( ".videos li:nth-child(1)" ).append(myData.javascript.videos.video1);
 $( ".videos li:nth-child(2)" ).append(myData.javascript.videos.video2);
 
-$( ".books li:nth-child(1)" ).append(myData.javascript.books.book1);
-$( ".books li:nth-child(2)" ).append(myData.javascript.books.book2);
-$( ".books li:nth-child(3)" ).append(myData.javascript.books.book3);
+$( ".books li:nth-child(1)" ).append(myData.javascript.books.book1.title);
+$( ".books li:nth-child(2)" ).append(myData.javascript.books.book2.title);
+$( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
 
 $( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1);
 $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2);
@@ -87,7 +95,19 @@ $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2);
 
 $( ".articles li:nth-child(1) input" ).change(function() {
     if(this.checked) {
-        console.log('Item 1 checked');
+      myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': true });
+    }
+    else {
+      myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': false });
+    }
+});
+
+$( ".articles li:nth-child(2) input" ).change(function() {
+    if(this.checked) {
+      myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': true });
+    }
+    else {
+      myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': false });
     }
 });
 
@@ -96,6 +116,14 @@ console.log(myData.javascript.videos.video1);
 
 
 
+/*
+
+myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': true });
+
+myFirebaseRef.child("/javascript/articles/article1").push({ 'completed': true });  //push
+
+fredNameRef.update({ first: 'Fred', last: 'Flintstone' });
+*/
 
 
 
