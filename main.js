@@ -351,6 +351,14 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 });
 
 
+var completedTotal = completedArticles + completedBooks + completedVids + completedTuts + completedCourses;
+var totalItems = totalArticles + totalBooks + totalTuts + totalVids + totalCourses;
+console.log(completedTotal);
+console.log(totalItems);
+var completePercent = completedTotal/totalItems*100;
+
+
+$( ".total-progress" ).css('width', completePercent+"%");
 
 //console.log(myData.javascript.articles.completed);
 
