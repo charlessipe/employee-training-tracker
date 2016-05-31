@@ -85,7 +85,7 @@ myFirebaseRef.set({
 
 
 myFirebaseRef.child("/user1/name").on("value", function(snapshot) {
-  alert(snapshot.val());  // Alerts "San Francisco"
+  //alert(snapshot.val());  // Alerts "Charles Sipe"
   userName = snapshot.val();
 });
 
@@ -112,6 +112,20 @@ $( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
 $( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1.title);
 $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
 
+
+// Calculate total percentage of items checked/completed
+
+var completePercent = 0;
+
+function calcTotalPercent() {
+  var completedTotal = completedArticles + completedBooks + completedVids + completedTuts + completedCourses;
+  var totalItems = totalArticles + totalBooks + totalTuts + totalVids + totalCourses;
+  console.log(completedTotal);
+  console.log(totalItems);
+  completePercent = completedTotal/totalItems*100;
+  completePercent = completePercent.toFixed(1);
+};
+
 // event listener for when an item is checked
 
 var completedArticles = 0;
@@ -125,6 +139,9 @@ $( ".articles li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.articles.completed);
       console.log(completedArticles/totalArticles*100);
       $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': false });
@@ -133,6 +150,9 @@ $( ".articles li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.articles.completed);
       console.log(completedArticles/totalArticles*100);
       $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -146,6 +166,9 @@ $( ".articles li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.articles.completed);
       console.log(completedArticles/totalArticles*100);
       $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': false });
@@ -154,6 +177,9 @@ $( ".articles li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.articles.completed);
       console.log(completedArticles/totalArticles*100);
       $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -170,6 +196,9 @@ $( ".books li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/books/book1").update({ 'completed': false });
@@ -178,6 +207,9 @@ $( ".books li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -189,6 +221,9 @@ $( ".books li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/books/book2").update({ 'completed': false });
@@ -197,6 +232,9 @@ $( ".books li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -208,6 +246,9 @@ $( ".books li:nth-child(3) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/books/book3").update({ 'completed': false });
@@ -216,6 +257,9 @@ $( ".books li:nth-child(3) input" ).change(function() {
       console.log(myData.javascript.books.completed);
       console.log(completedBooks/totalBooks*100);
       $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -233,6 +277,9 @@ $( ".tutorials li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.tutorials.completed);
       console.log(completedTuts/totalTuts*100);
       $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/tutorials/tut1").update({ 'completed': false });
@@ -241,6 +288,9 @@ $( ".tutorials li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.tutorials.completed);
       console.log(completedTuts/totalTuts*100);
       $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -252,6 +302,9 @@ $( ".tutorials li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.tutorials.completed);
       console.log(completedTuts/totalTuts*100);
       $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/tutorials/tut2").update({ 'completed': false });
@@ -260,6 +313,9 @@ $( ".tutorials li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.tutorials.completed);
       console.log(completedTuts/totalTuts*100);
       $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -277,6 +333,9 @@ $( ".videos li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.videos.completed);
       console.log(completedVids/totalVids*100);
       $( ".videos-progress" ).css('width', (completedVids/totalVids*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/videos/video1").update({ 'completed': false });
@@ -285,6 +344,9 @@ $( ".videos li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.videos.completed);
       console.log(completedVids/totalVids*100);
       $( ".videos-progress" ).css('width', (completedVids/totalVids*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -296,6 +358,9 @@ $( ".videos li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.videos.completed);
       console.log(completedVids/totalVids*100);
       $( ".videos-progress" ).css('width', (completedVids/totalVids*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/videos/video2").update({ 'completed': false });
@@ -304,6 +369,9 @@ $( ".videos li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.videos.completed);
       console.log(completedVids/totalVids*100);
       $( ".videos-progress" ).css('width', (completedVids/totalVids*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -320,6 +388,9 @@ $( ".courses li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.courses.completed);
       console.log(completedCourses/totalCourses*100);
       $( ".courses-progress" ).css('width', (completedCourses/totalCourses*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/courses/course1").update({ 'completed': false });
@@ -328,6 +399,9 @@ $( ".courses li:nth-child(1) input" ).change(function() {
       console.log(myData.javascript.courses.completed);
       console.log(completedCourses/totalCourses*100);
       $( ".courses-progress" ).css('width', (completedCourses/totalCourses*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
@@ -339,6 +413,9 @@ $( ".courses li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.courses.completed);
       console.log(completedCourses/totalCourses*100);
       $( ".courses-progress" ).css('width', (completedCourses/totalCourses*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
       myFirebaseRef.child("/javascript/courses/course2").update({ 'completed': false });
@@ -347,18 +424,17 @@ $( ".courses li:nth-child(2) input" ).change(function() {
       console.log(myData.javascript.courses.completed);
       console.log(completedCourses/totalCourses*100);
       $( ".courses-progress" ).css('width', (completedCourses/totalCourses*100)+"%");
+      calcTotalPercent();
+      console.log(completePercent);
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
 
-var completedTotal = completedArticles + completedBooks + completedVids + completedTuts + completedCourses;
-var totalItems = totalArticles + totalBooks + totalTuts + totalVids + totalCourses;
-console.log(completedTotal);
-console.log(totalItems);
-var completePercent = completedTotal/totalItems*100;
 
 
-$( ".total-progress" ).css('width', completePercent+"%");
+
+
 
 //console.log(myData.javascript.articles.completed);
 
