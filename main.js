@@ -1,9 +1,35 @@
 
 $( document ).ready(function() {
 
+var myData;
+
 var myFirebaseRef = new Firebase("https://training-tracker.firebaseio.com/");
 
-/* myFirebaseRef.set({
+var myFirebaseRef2 = new Firebase("https://training-tracker.firebaseio.com/user1");
+
+/*myFirebaseRef2.set({
+  user1: {
+    facebookId: 100,
+    name: "Chuck Sipe",
+    articles : {
+      article1: true,
+      article2: false,
+      article3: true,
+      completed: 2,
+      total: 3
+    },
+    videos: {
+      video1: true,
+      video2: false,
+      completed: 1,
+      total: 2
+    }
+  }
+});
+*/
+
+/*
+myFirebaseRef.set({
   javascript: {
     books: {
       book1: {
@@ -84,8 +110,8 @@ var myFirebaseRef = new Firebase("https://training-tracker.firebaseio.com/");
   }
 });
 
-*/
 
+*/
 
 
 // Cache user's name from Firebase
@@ -98,9 +124,12 @@ myFirebaseRef.child("/user1/name").on("value", function(snapshot) {
 // Cache the Firebase data
 
 myFirebaseRef.on("value", function(data) {
-  console.log(data.val());  
+  console.log(data.val());  //
   myData = data.val();
+  displayLogic();
 });
+
+
 
 
 
@@ -422,25 +451,31 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 });
 
 
-console.log(myData.javascript.articles.article1.title);
+function displayLogic(){
 
-$( ".user-name" ).append(userName);
+  console.log(myData.javascript.articles.article1.title);
 
-$( ".articles li:nth-child(1)" ).append(myData.javascript.articles.article1.title);
-$( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2.title);
+  $( ".user-name" ).append(userName);
+  
+  //$( ".articles li:nth-child(1) label").children().text("");
+  $( ".articles li:nth-child(1)" ).append(myData.javascript.articles.article1.title);
 
-$( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1.title);
-$( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2.title);
+  $( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2.title);
 
-$( ".videos li:nth-child(1)" ).append(myData.javascript.videos.video1.title);
-$( ".videos li:nth-child(2)" ).append(myData.javascript.videos.video2.title);
+  $( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1.title);
+  $( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2.title);
 
-$( ".books li:nth-child(1)" ).append(myData.javascript.books.book1.title);
-$( ".books li:nth-child(2)" ).append(myData.javascript.books.book2.title);
-$( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
+  $( ".videos li:nth-child(1)" ).append(myData.javascript.videos.video1.title);
+  $( ".videos li:nth-child(2)" ).append(myData.javascript.videos.video2.title);
 
-$( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1.title);
-$( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
+  $( ".books li:nth-child(1)" ).append(myData.javascript.books.book1.title);
+  $( ".books li:nth-child(2)" ).append(myData.javascript.books.book2.title);
+  $( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
+
+  $( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1.title);
+  $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
+
+};
 
 
 });
