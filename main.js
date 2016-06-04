@@ -28,7 +28,7 @@ var myFirebaseRef2 = new Firebase("https://training-tracker.firebaseio.com/user1
 });
 */
 
-/*
+
 myFirebaseRef.set({
   javascript: {
     books: {
@@ -111,8 +111,6 @@ myFirebaseRef.set({
 });
 
 
-*/
-
 
 // Cache user's name from Firebase
 
@@ -126,7 +124,7 @@ myFirebaseRef.child("/user1/name").on("value", function(snapshot) {
 myFirebaseRef.on("value", function(data) {
   console.log(data.val());  //
   myData = data.val();
-  displayLogic();
+  //displayLogic();
 });
 
 
@@ -451,9 +449,9 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 });
 
 
-function displayLogic(){
 
   console.log(myData.javascript.articles.article1.title);
+
 
   $( ".user-name" ).append(userName);
   
@@ -463,38 +461,27 @@ function displayLogic(){
   $( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2.title);
 
   $( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1.title);
+
   $( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2.title);
 
   $( ".videos li:nth-child(1)" ).append(myData.javascript.videos.video1.title);
+
   $( ".videos li:nth-child(2)" ).append(myData.javascript.videos.video2.title);
 
   $( ".books li:nth-child(1)" ).append(myData.javascript.books.book1.title);
+  
   $( ".books li:nth-child(2)" ).append(myData.javascript.books.book2.title);
+
   $( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
 
   $( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1.title);
-  $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
 
-};
+  $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
 
 
 });
 
 
-
-//console.log(myData.javascript.articles.completed);
-
-
-
-
-/*
-
-myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': true });
-
-myFirebaseRef.child("/javascript/articles/article1").push({ 'completed': true });  //push
-
-fredNameRef.update({ first: 'Fred', last: 'Flintstone' });
-*/
 
 
 
