@@ -1,7 +1,7 @@
 
 $( document ).ready(function() {
 
-var myData;
+var myData = 2;
 
 var myFirebaseRef = new Firebase("https://training-tracker.firebaseio.com/");
 
@@ -28,7 +28,7 @@ var myFirebaseRef2 = new Firebase("https://training-tracker.firebaseio.com/user1
 });
 */
 
-
+/*
 myFirebaseRef.set({
   javascript: {
     books: {
@@ -46,13 +46,13 @@ myFirebaseRef.set({
       },
       completed: 0
     },
-    articles: {
-      article1: {
-        title: "Understand JavaScript’s 'this' With Clarity, and Master It",
+    prototype: {
+      prototype1: {
+        title: "A Plain English Guide to JavaScript Prototypes",
         completed: false
       },
-      article2: {
-        title: "Exploring JavaScript For-in Loops",
+      prototype2: {
+        title: "JavaScript Prototype in Plain Language",
         completed: false
       },
       completed: 0
@@ -108,8 +108,9 @@ myFirebaseRef.set({
       total: 2
     }
   }
-});
+}, displayLogic);
 
+*/
 
 
 // Cache user's name from Firebase
@@ -136,8 +137,8 @@ myFirebaseRef.on("value", function(data) {
 var completePercent = 0;
 
 function calcTotalPercent() {
-  var completedTotal = completedArticles + completedBooks + completedVids + completedTuts + completedCourses;
-  var totalItems = totalArticles + totalBooks + totalTuts + totalVids + totalCourses;
+  var completedTotal = completedPrototype + completedBooks + completedVids + completedTuts + completedCourses;
+  var totalItems = totalPrototype + totalBooks + totalTuts + totalVids + totalCourses;
   console.log(completedTotal);
   console.log(totalItems);
   completePercent = completedTotal/totalItems*100;
@@ -146,57 +147,47 @@ function calcTotalPercent() {
 
 // event listener for when an item is checked
 
-var completedArticles = 0;
-var totalArticles = 2;
+// prototype
 
-$( ".articles li:nth-child(1) input" ).change(function() {
+var completedPrototype = 0;
+var totalPrototype = 2;
+
+$( ".prototype li:nth-child(1) input" ).change(function() {
     if(this.checked) {
-      myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': true });
-      completedArticles ++;
-      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
-      console.log(myData.javascript.articles.completed);
-      console.log(completedArticles/totalArticles*100);
-      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      myFirebaseRef.child("/javascript/prototype/prototype1").update({ 'completed': true });
+      completedPrototype ++;
+      myFirebaseRef.child("/javascript/prototype/").update({ 'completed': completedPrototype });
+      $( ".prototype-progress" ).css('width', (completedPrototype/totalPrototype*100)+"%");
       calcTotalPercent();
-      console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
-      myFirebaseRef.child("/javascript/articles/article1").update({ 'completed': false });
-      completedArticles --;
-      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
-      console.log(myData.javascript.articles.completed);
-      console.log(completedArticles/totalArticles*100);
-      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      myFirebaseRef.child("/javascript/prototype/prototype1").update({ 'completed': false });
+      completedPrototype --;
+      myFirebaseRef.child("/javascript/prototype/").update({ 'completed': completedPrototype });
+      $( ".prototype-progress" ).css('width', (completedPrototype/totalPrototype*100)+"%");
       calcTotalPercent();
-      console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
 
 
-$( ".articles li:nth-child(2) input" ).change(function() {
+$( ".prototype li:nth-child(2) input" ).change(function() {
     if(this.checked) {
-      myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': true });
-      completedArticles ++;
-      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
-      console.log(myData.javascript.articles.completed);
-      console.log(completedArticles/totalArticles*100);
-      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      myFirebaseRef.child("/javascript/prototype/prototype2").update({ 'completed': true });
+      completedPrototype ++;
+      myFirebaseRef.child("/javascript/prototype/").update({ 'completed': completedPrototype });
+      $( ".prototype-progress" ).css('width', (completedPrototype/totalPrototype*100)+"%");
       calcTotalPercent();
-      console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
-      myFirebaseRef.child("/javascript/articles/article2").update({ 'completed': false });
-      completedArticles --;
-      myFirebaseRef.child("/javascript/articles/").update({ 'completed': completedArticles });
-      console.log(myData.javascript.articles.completed);
-      console.log(completedArticles/totalArticles*100);
-      $( ".articles-progress" ).css('width', (completedArticles/totalArticles*100)+"%");
+      myFirebaseRef.child("/javascript/prototype/prototype2").update({ 'completed': false });
+      completedPrototype --;
+      myFirebaseRef.child("/javascript/prototype/").update({ 'completed': completedPrototype });
+      $( ".prototype-progress" ).css('width', (completedPrototype/totalPrototype*100)+"%");
       calcTotalPercent();
-      console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
@@ -450,15 +441,26 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 
 
 
-  console.log(myData.javascript.articles.article1.title);
+  //console.log(myData.javascript.articles.article1.title);
 
+  function displayLogic(){
 
   $( ".user-name" ).append(userName);
   
   //$( ".articles li:nth-child(1) label").children().text("");
-  $( ".articles li:nth-child(1)" ).append(myData.javascript.articles.article1.title);
+  $( ".prototype li:nth-child(1)" ).append(myData.javascript.prototype.prototype1.title);
 
-  $( ".articles li:nth-child(2)" ).append(myData.javascript.articles.article2.title);
+  $( ".prototype li:nth-child(2)" ).append(myData.javascript.prototype.prototype2.title);
+
+  if( myData.javascript.prototype.prototype1.completed == true ){
+    alert("First prototype is completed")
+    $(".prototype li:nth-child(1) input").attr('checked', 'checked');
+  }
+
+  if( myData.javascript.prototype.prototype2.completed == true ){
+    alert("Second prototype is completed")
+    $(".prototype li:nth-child(2) input").attr('checked', 'checked');
+  }  
 
   $( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1.title);
 
@@ -478,11 +480,36 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 
   $( ".courses li:nth-child(2)" ).append(myData.javascript.courses.course2.title);
 
+  };
+
+  setTimeout(function(){ displayLogic(); }, 1000);
 
 });
 
 
 
 
+
+/*
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+
+      console.log(completePercent);
+
+      console.log(myData.javascript.articles.completed);
+      console.log(completedArticles/totalArticles*100);
+
+      console.log(completePercent);
+
+            console.log(myData.javascript.prototype.completed);
+      console.log(completedPrototype/totalPrototype*100);
+
+            console.log(completePercent);
+
+                 console.log(myData.javascript.prototype.completed);
+      console.log(completedArticles/totalArticles*100);
+
+            console.log(completePercent);
+*/
 
 
