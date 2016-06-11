@@ -1,7 +1,7 @@
 
 $( document ).ready(function() {
 
-var myData = 2;
+//var myData = 2;
 
 var myFirebaseRef = new Firebase("https://training-tracker.firebaseio.com/");
 
@@ -31,16 +31,16 @@ var myFirebaseRef2 = new Firebase("https://training-tracker.firebaseio.com/user1
 /*
 myFirebaseRef.set({
   javascript: {
-    books: {
-      book1: {
+    thiskeyword: {
+      thiskeyword1: {
         title: "Eloquent JavaScript by Marijn Haverbeke",
         completed: false
       },
-      book2: {
+      thiskeyword2: {
         title: "JavaScript & jQuery by Jon Duckett",
         completed: false
       },
-      book3: {
+      thiskeyword3: {
         title: "JavaScript The Good Parts by Douglas Crockford",
         completed: false
       },
@@ -68,12 +68,12 @@ myFirebaseRef.set({
       },
       completed: 0
     },
-    tutorials: {
-      tut1: {
+    functions: {
+      functions1: {
         title: "Learn Angular by Building a Gmail Clone",
         completed: false
       },
-      tut2: {
+      functions2: {
         title: "Create a MEAN Stack Google Map App (Part I)",
         completed: false
       },
@@ -137,8 +137,8 @@ myFirebaseRef.on("value", function(data) {
 var completePercent = 0;
 
 function calcTotalPercent() {
-  var completedTotal = completedPrototype + completedBooks + completedVids + completedTuts + completedCourses;
-  var totalItems = totalPrototype + totalBooks + totalTuts + totalVids + totalCourses;
+  var completedTotal = completedPrototype + completedThisKeyword + completedVids + completedFunctions + completedCourses;
+  var totalItems = totalPrototype + totalThisKeyword + totalFunctions + totalVids + totalCourses;
   console.log(completedTotal);
   console.log(totalItems);
   completePercent = completedTotal/totalItems*100;
@@ -192,136 +192,118 @@ $( ".prototype li:nth-child(2) input" ).change(function() {
     }
 });
 
-// books
+// this keyword
 
-var completedBooks = 0;
-var totalBooks = 3;
+var completedThisKeyword = 0;
+var totalThisKeyword = 3;
 
-$( ".books li:nth-child(1) input" ).change(function() {
+$( ".thiskeyword li:nth-child(1) input" ).change(function() {
     if(this.checked) {
-      myFirebaseRef.child("/javascript/books/book1").update({ 'completed': true });
-      completedBooks ++;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword1").update({ 'completed': true });
+      completedThisKeyword ++;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+    else {
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword1").update({ 'completed': false });
+      completedThisKeyword --;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+});
+
+$( ".thiskeyword li:nth-child(2) input" ).change(function() {
+    if(this.checked) {
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword2").update({ 'completed': true });
+      completedThisKeyword ++;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+    else {
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword2").update({ 'completed': false });
+      completedThisKeyword --;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+});
+
+$( ".thiskeyword li:nth-child(3) input" ).change(function() {
+    if(this.checked) {
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword3").update({ 'completed': true });
+      completedThisKeyword ++;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+    else {
+      myFirebaseRef.child("/javascript/thiskeyword/thiskeyword3").update({ 'completed': false });
+      completedThisKeyword --;
+      myFirebaseRef.child("/javascript/thiskeyword/").update({ 'completed': completedThisKeyword });
+      $( ".thiskeyword-progress" ).css('width', (completedThisKeyword/totalThisKeyword*100)+"%");
+      calcTotalPercent();
+      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+    }
+});
+
+
+// Functions
+
+var completedFunctions = 0;
+var totalFunctions = 2;
+
+$( ".functions li:nth-child(1) input" ).change(function() {
+    if(this.checked) {
+      myFirebaseRef.child("/javascript/functions/functions1").update({ 'completed': true });
+      completedFunctions ++;
+      myFirebaseRef.child("/javascript/functions/").update({ 'completed': completedFunctions });
+      console.log(myData.javascript.functions.completed);
+      console.log(completedFunctions/totalFunctions*100);
+      $( ".functions-progress" ).css('width', (completedFunctions/totalFunctions*100)+"%");
       calcTotalPercent();
       console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
-      myFirebaseRef.child("/javascript/books/book1").update({ 'completed': false });
-      completedBooks --;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      myFirebaseRef.child("/javascript/functions/functions1").update({ 'completed': false });
+      completedFunctions --;
+      myFirebaseRef.child("/javascript/functions/").update({ 'completed': completedFunctions });
+      console.log(myData.javascript.functions.completed);
+      console.log(completedFunctions/totalFunctions*100);
+      $( ".functions-progress" ).css('width', (completedFunctions/totalFunctions*100)+"%");
       calcTotalPercent();
       console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
 });
 
-$( ".books li:nth-child(2) input" ).change(function() {
+$( ".functions li:nth-child(2) input" ).change(function() {
     if(this.checked) {
-      myFirebaseRef.child("/javascript/books/book2").update({ 'completed': true });
-      completedBooks ++;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
+      myFirebaseRef.child("/javascript/functions/functions2").update({ 'completed': true });
+      completedFunctions ++;
+      myFirebaseRef.child("/javascript/functions/").update({ 'completed': completedFunctions });
+      console.log(myData.javascript.functions.completed);
+      console.log(completedFunctions/totalFunctions*100);
+      $( ".functions-progress" ).css('width', (completedFunctions/totalFunctions*100)+"%");
       calcTotalPercent();
       console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
     }
     else {
-      myFirebaseRef.child("/javascript/books/book2").update({ 'completed': false });
-      completedBooks --;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-});
-
-$( ".books li:nth-child(3) input" ).change(function() {
-    if(this.checked) {
-      myFirebaseRef.child("/javascript/books/book3").update({ 'completed': true });
-      completedBooks ++;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-    else {
-      myFirebaseRef.child("/javascript/books/book3").update({ 'completed': false });
-      completedBooks --;
-      myFirebaseRef.child("/javascript/books/").update({ 'completed': completedBooks });
-      console.log(myData.javascript.books.completed);
-      console.log(completedBooks/totalBooks*100);
-      $( ".books-progress" ).css('width', (completedBooks/totalBooks*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-});
-
-
-// Tutorials
-
-var completedTuts = 0;
-var totalTuts = 2;
-
-$( ".tutorials li:nth-child(1) input" ).change(function() {
-    if(this.checked) {
-      myFirebaseRef.child("/javascript/tutorials/tut1").update({ 'completed': true });
-      completedTuts ++;
-      myFirebaseRef.child("/javascript/tutorials/").update({ 'completed': completedTuts });
-      console.log(myData.javascript.tutorials.completed);
-      console.log(completedTuts/totalTuts*100);
-      $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-    else {
-      myFirebaseRef.child("/javascript/tutorials/tut1").update({ 'completed': false });
-      completedTuts --;
-      myFirebaseRef.child("/javascript/tutorials/").update({ 'completed': completedTuts });
-      console.log(myData.javascript.tutorials.completed);
-      console.log(completedTuts/totalTuts*100);
-      $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-});
-
-$( ".tutorials li:nth-child(2) input" ).change(function() {
-    if(this.checked) {
-      myFirebaseRef.child("/javascript/tutorials/tut2").update({ 'completed': true });
-      completedTuts ++;
-      myFirebaseRef.child("/javascript/tutorials/").update({ 'completed': completedTuts });
-      console.log(myData.javascript.tutorials.completed);
-      console.log(completedTuts/totalTuts*100);
-      $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
-      calcTotalPercent();
-      console.log(completePercent);
-      $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
-    }
-    else {
-      myFirebaseRef.child("/javascript/tutorials/tut2").update({ 'completed': false });
-      completedTuts --;
-      myFirebaseRef.child("/javascript/tutorials/").update({ 'completed': completedTuts });
-      console.log(myData.javascript.tutorials.completed);
-      console.log(completedTuts/totalTuts*100);
-      $( ".tuts-progress" ).css('width', (completedTuts/totalTuts*100)+"%");
+      myFirebaseRef.child("/javascript/functions/functions2").update({ 'completed': false });
+      completedFunctions --;
+      myFirebaseRef.child("/javascript/functions/").update({ 'completed': completedFunctions });
+      console.log(myData.javascript.functions.completed);
+      console.log(completedFunctions/totalFunctions*100);
+      $( ".functions-progress" ).css('width', (completedFunctions/totalFunctions*100)+"%");
       calcTotalPercent();
       console.log(completePercent);
       $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
@@ -462,19 +444,19 @@ $( ".courses li:nth-child(2) input" ).change(function() {
     $(".prototype li:nth-child(2) input").attr('checked', 'checked');
   }  
 
-  $( ".tutorials li:nth-child(1)" ).append(myData.javascript.tutorials.tut1.title);
+  $( ".functions li:nth-child(1)" ).append(myData.javascript.functions.functions1.title);
 
-  $( ".tutorials li:nth-child(2)" ).append(myData.javascript.tutorials.tut2.title);
+  $( ".functions li:nth-child(2)" ).append(myData.javascript.functions.functions2.title);
 
   $( ".videos li:nth-child(1)" ).append(myData.javascript.videos.video1.title);
 
   $( ".videos li:nth-child(2)" ).append(myData.javascript.videos.video2.title);
 
-  $( ".books li:nth-child(1)" ).append(myData.javascript.books.book1.title);
+  $( ".thiskeyword li:nth-child(1)" ).append(myData.javascript.thiskeyword.thiskeyword1.title);
   
-  $( ".books li:nth-child(2)" ).append(myData.javascript.books.book2.title);
+  $( ".thiskeyword li:nth-child(2)" ).append(myData.javascript.thiskeyword.thiskeyword2.title);
 
-  $( ".books li:nth-child(3)" ).append(myData.javascript.books.book3.title);
+  $( ".thiskeyword li:nth-child(3)" ).append(myData.javascript.thiskeyword.thiskeyword3.title);
 
   $( ".courses li:nth-child(1)" ).append(myData.javascript.courses.course1.title);
 
@@ -482,7 +464,7 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 
   };
 
-  setTimeout(function(){ displayLogic(); }, 1000);
+  setTimeout(function(){ displayLogic(); }, 2000);
 
 });
 
@@ -510,6 +492,40 @@ $( ".courses li:nth-child(2) input" ).change(function() {
       console.log(completedArticles/totalArticles*100);
 
             console.log(completePercent);
-*/
+
+      console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+      console.log(completePercent);
+
+           console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+
+      console.log(completePercent);
+
+            console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+
+      console.log(completePercent);
+
+            console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+            console.log(completePercent);
+
+                  console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+            console.log(completePercent);
+
+      console.log(myData.javascript.books.completed);
+      console.log(completedBooks/totalBooks*100);
+
+            console.log(completePercent);
+
+    */
+
 
 
