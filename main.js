@@ -137,6 +137,7 @@ myFirebaseRef.on("value", function(data) {
 var completePercent = 0;
 
 function calcTotalPercent() {
+  var completedPrototype = myData.javascript.prototype.completed;
   var completedTotal = completedPrototype + completedThisKeyword + completedVids + completedFunctions + completedCourses;
   var totalItems = totalPrototype + totalThisKeyword + totalFunctions + totalVids + totalCourses;
   console.log(completedTotal);
@@ -149,8 +150,20 @@ function calcTotalPercent() {
 
 // prototype
 
-var completedPrototype = 0;
+//var completedPrototype = 0;
 var totalPrototype = 2;
+
+// get completedPrototype from Firebase object
+function getCompletedPrototype(){
+  completedPrototype = myData.javascript.prototype.completed;
+  console.log("completedPrototype is " + completedPrototype);
+  $( ".prototype-progress" ).css('width', (completedPrototype/totalPrototype*100)+"%");
+  calcTotalPercent();
+  $( ".total-progress" ).css('width', completePercent+"%").text(completePercent + "%");
+} 
+
+setTimeout(function(){ getCompletedPrototype(); }, 4000);
+
 
 $( ".prototype li:nth-child(1) input" ).change(function() {
     if(this.checked) {
@@ -464,7 +477,7 @@ $( ".courses li:nth-child(2) input" ).change(function() {
 
   };
 
-  setTimeout(function(){ displayLogic(); }, 2000);
+  setTimeout(function(){ displayLogic(); }, 3000);
 
 });
 
