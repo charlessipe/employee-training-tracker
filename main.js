@@ -33,15 +33,15 @@ myFirebaseRef.set({
   javascript: {
     thiskeyword: {
       thiskeyword1: {
-        title: "Eloquent JavaScript by Marijn Haverbeke",
+        title: "Understand JavaScript's “this” With Clarity, and Master It",
         completed: false
       },
       thiskeyword2: {
-        title: "JavaScript & jQuery by Jon Duckett",
+        title: "Fully Understanding the this Keyword",
         completed: false
       },
       thiskeyword3: {
-        title: "JavaScript The Good Parts by Douglas Crockford",
+        title: "The Final Steps to Mastering JavaScript's 'this' Keyword",
         completed: false
       },
       completed: 0
@@ -59,33 +59,33 @@ myFirebaseRef.set({
     },
     closures: {
       closures1: {
-        title: "How This Works in JavaScript",
+        title: "Really Understanding Javascript Closures",
         completed: false
       },
       closures2: {
-        title: "Keeping Track of 'This' in JavaScript",
+        title: "Yet Another Explanation of JavaScript Closures",
         completed: false
       },
       completed: 0
     },
     functions: {
       functions1: {
-        title: "Learn Angular by Building a Gmail Clone",
+        title: "Functions Eloquent JavaScript",
         completed: false
       },
       functions2: {
-        title: "Create a MEAN Stack Google Map App (Part I)",
+        title: "Understand JavaScript Callback Functions and Use Them",
         completed: false
       },
       completed: 0
     },
     scope: {
       scope1: {
-        title: "Lynda: JavaScript Essential Training",
+        title: "Understanding Scope and Context in JavaScript",
         completed: false
       },
       scope2: {
-        title: "Lynda: JavaScript and AJAX",
+        title: "JavaScript Variable Scope and Hoisting Explained",
         completed: false
       },
       completed: 0
@@ -109,8 +109,8 @@ myFirebaseRef.set({
     }
   }
 }, displayLogic);
-*/
 
+*/
 
 
 // Cache user's name from Firebase
