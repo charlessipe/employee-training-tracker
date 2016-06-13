@@ -33,59 +33,59 @@ myFirebaseRef.set({
   javascript: {
     thiskeyword: {
       thiskeyword1: {
-        title: "Understand JavaScript's “this” With Clarity, and Master It",
+        title: "<a href='http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/'>Understand JavaScript's this With Clarity, and Master It</a> - JavaScript is Sexy",
         completed: false
       },
       thiskeyword2: {
-        title: "Fully Understanding the this Keyword",
+        title: "<a href='http://code.tutsplus.com/tutorials/fully-understanding-the-codethiscode-keyword--net-21117'>Fully Understanding the this Keyword</a> - Envato Tuts",
         completed: false
       },
       thiskeyword3: {
-        title: "The Final Steps to Mastering JavaScript's 'this' Keyword",
+        title: "<a href='https://www.sitepoint.com/mastering-javascripts-this-keyword/'>The Final Steps to Mastering JavaScript's 'this' Keyword</a> - SitePoint",
         completed: false
       },
       completed: 0
     },
     prototype: {
       prototype1: {
-        title: "A Plain English Guide to JavaScript Prototypes",
+        title: "<a href='http://sporto.github.io/blog/2013/02/22/a-plain-english-guide-to-javascript-prototypes/'>A Plain English Guide to JavaScript Prototypes</a> - Sebastian's Blog",
         completed: false
       },
       prototype2: {
-        title: "JavaScript Prototype in Plain Language",
+        title: "<a href='http://javascriptissexy.com/javascript-prototype-in-plain-detailed-language/'>JavaScript Prototype in Plain Language</a> - JavaScript is Sexy",
         completed: false
       },
       completed: 0
     },
     closures: {
       closures1: {
-        title: "Really Understanding Javascript Closures",
+        title: "<a href='http://blog.angular-university.io/really-understanding-javascript-closures/'>Really Understanding Javascript Closures</a> - Angular University",
         completed: false
       },
       closures2: {
-        title: "Yet Another Explanation of JavaScript Closures",
+        title: "<a href='http://andrew.hedges.name/blog/2011/04/26/yet-another-explanation-of-javascript-closures'>Yet Another Explanation of JavaScript Closures</a> - Andrew Hedges",
         completed: false
       },
       completed: 0
     },
     functions: {
       functions1: {
-        title: "Functions Eloquent JavaScript",
+        title: "<a href='http://eloquentjavascript.net/03_functions.html'>Functions</a> - Eloquent JavaScript",
         completed: false
       },
       functions2: {
-        title: "Understand JavaScript Callback Functions and Use Them",
+        title: "<a href='http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/'>Understand JavaScript Callback Functions and Use Them</a> - JavaScript is Sexy",
         completed: false
       },
       completed: 0
     },
     scope: {
       scope1: {
-        title: "Understanding Scope and Context in JavaScript",
+        title: "<a href='http://ryanmorr.com/understanding-scope-and-context-in-javascript/'>Understanding Scope and Context in JavaScript</a> - Ryan Morr",
         completed: false
       },
       scope2: {
-        title: "JavaScript Variable Scope and Hoisting Explained",
+        title: "<a href='http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/'>JavaScript Variable Scope and Hoisting Explained</a> - JavaScript is Sexy",
         completed: false
       },
       completed: 0
@@ -109,8 +109,8 @@ myFirebaseRef.set({
     }
   }
 }, displayLogic);
-
 */
+
 
 
 // Cache user's name from Firebase
